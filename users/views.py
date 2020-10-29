@@ -21,11 +21,11 @@ def register(request):
 
 @login_required
 def profile(request):
-  update_user = UpdateUserForm()
-  update_profile = ProfileUpdateForm()
+  update_user = UpdateUserForm(instance = request.user)
+  update_profile = ProfileUpdateForm(instance = request.user.profile)
 
   context = {
-    'u_user':update_user,
-    'u_profile':update_profile,
+      'u_user': update_user,
+      'u_profile': update_profile,
   }
   return render(request, 'users/profile.html', context)
