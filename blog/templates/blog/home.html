@@ -1,5 +1,4 @@
 {% extends "blog/base.html" %}
-
 {% block content %}
   {% for post in posts %}
     <article class="media content-section">
@@ -8,7 +7,7 @@
           <a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a><img src="{{ user.profile.image.url }}" style="width:40px;height:40px">
           <small class="text-muted">{{ post.date_posted|date:'F d, Y' }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+        <h2><a class="article-title" href="{% url 'blog-detail' post.id %}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
       </div>
     </article>
