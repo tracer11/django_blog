@@ -1,27 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
-from .forms import PostCreation
+from .forms import PostCreationForm
 
-def home(request):
-  context = {
-    'posts': Post.objects.all()
-  }
-  return render(request, 'blog/home.html', context)
+class PostListView(ListView):
+  model = Post
+  template_name = 'blog/home.html'
+  context_object_name = 'posts'
+  ordering = ['-date_posted']
 
-
-def create(request):
-  if request.method == 'POST':
-    form = PostCreationForm(request.POST)
-    if form.is_valid():
-      form.save()
-      redirect('')
-
-  context = {'form' : form}
-
-  return render(request, 'blog/create_post.html', context)
+class PostDetailView(DetailView):
+  model = Post
 
 
-def about(request):
-  return render(request, 'blog/about.html')
+
+
 
 
