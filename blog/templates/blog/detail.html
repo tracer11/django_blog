@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="{% url 'profile' %}">{{ object.author }}</a><img src="{{ user.profile.image.url }}" style="width:40px;height:40px">
+          <small class="text-muted">{{ object.date_posted|date:'F d, Y' }}</small>
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        <button class="btn btn-outline-info"><a href="{% url 'blog-update' post.id %}">Update Post</a></button>
+      </div>
+    </article>
+{% endblock content %}
