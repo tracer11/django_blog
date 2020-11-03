@@ -8,8 +8,8 @@
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
-        <button class="btn btn-outline-info"><a href="{% url 'blog-update' post.id %}">Update Post</a></button>
-        <button class="btn btn-outline-info"><a href="{% url 'blog-delete' post.id %}">Delete Post</a></button>
+        <a class="btn btn-outline-info"href="{% url 'blog-update' post.id %}">Update Post</a>
+        <a class="btn btn-danger"href="{% url 'blog-delete' post.id %}">Delete Post</a>
       </div>
     </article>
 {% endblock content %}
