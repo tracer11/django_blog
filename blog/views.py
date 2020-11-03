@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import (ListView, DetailView, CreateView, UpdateView)
+from django.urls import reverse_lazy
+from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 
@@ -31,6 +32,18 @@ class PostUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
       post = self.get_object()
       if self.request.user == post.author:
         return True 
+      else:
+        return False
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+
+    success_url = reverse_lazy('blog-home')
+
+    def test_func(self):
+      post = self.get_object()
+      if self.request.user == post.author:
+        return True
       else:
         return False
 
