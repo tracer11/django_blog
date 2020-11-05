@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    <h2>Are you sure you want to delete {{post.title}}?</h2>
+    <input class="btn btn-danger" type="submit" value="Delete">
+    <a class="btn btn-outline-info" href="{% url 'blog-detail' post.id %}">Cancel</a>
+  </form>
+{% endblock content %}
