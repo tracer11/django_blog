@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 
 class PostListView(ListView):
+  paginate_by = 5
   model = Post
   template_name = 'blog/home.html'
   context_object_name = 'posts'
